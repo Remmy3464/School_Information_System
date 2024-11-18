@@ -19,6 +19,7 @@ considering in this project)
 - Rank (professor and adjunct are the only ranks we are considering in this 
 project)
 <p> Students in this college pay $236.45 per one credit hour in addition to a $52 administrative fee. Note that students get a 25% off total payment if their gpa is greater or equal to 3.85. Your code should be able to handle up to 100 students and up to 30 faculty  members. You may use any data structure of your choosing to store the students/faculty information (arrays, linked lists…etc.)</p>
+
 # Please note well that:
 1) Your code should run exactly as shown on the sample run below (However, the TA will not deduct points because you skipped two lines instead of three or your tuition invoice has 56 hyphens instead of 63).
 2) When asked to enter the faculty’s department, math, mAth, Math … and MATH are considered to be the same. However, if the user enters Mathematics or Math department, then that is an invalid entry. Consider these departments only: math, cs or science. As for the rank of a faculty, consider these ranks only: professor or adjunct.
