@@ -31,14 +31,14 @@ Please note well that:
 4) The university ID must be of the same format as the UCF’s nid with no spaces in between(letterletterdigitdigitdigitdigitdigitdigit). But ab123456 is the same as aB123456, Ab123456 or AB123456
 5) You may assume that the user enters one character when asked to enter a menu option.
 6) The program terminates if the user fails to enter the correct information after trying three times.
-   _For example:_
-*Enter the faculty’s info:*
-Name of the faculty: Edward Saeed
-ID: gz789449
-Rank: Instructor
-Sorry entered rank (Instructor) is invalid. Try again.
-Rank: Assistant Prof
-_Sorry entered rank (Assistant Prof) is invalid. Try again._
-Rank: Prof
-_You have tried too many times…_
+  <br> _For example:_
+<br>*Enter the faculty’s info:*
+<br>*Name of the faculty:* **Edward Saeed**
+<br>*ID:* **gz789449**
+<br>*Rank:* **Instructor**
+<br>*Sorry entered rank (Instructor) is invalid. Try again.*
+<br>*Rank:* **Assistant Prof**
+<br>*Sorry entered rank (Assistant Prof) is invalid. Try again.*
+<br>*Rank:* **Prof**
+<br>*You have tried too many times…*<br>
 _Thank you for using SIMS. Goodbye_
