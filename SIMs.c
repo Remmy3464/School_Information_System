@@ -1,8 +1,6 @@
 /******************************************************************************
 
                             Online C Compiler.
-                Code, Compile, Run and Debug C program online.
-Write your code in this editor and press "Run" button to compile and execute it.
 
 *******************************************************************************/
 
@@ -10,7 +8,7 @@ Write your code in this editor and press "Run" button to compile and execute it.
 #include <string.h>
 #include <ctype.h>
 
-#define MAX_STUDENTS 100
+#define MAX_StudS 100
 #define MAX_FACULTY 30
 #define CREDIT_COST 236.45
 #define ADMIN_FEE 52.0
@@ -18,22 +16,22 @@ Write your code in this editor and press "Run" button to compile and execute it.
 #define DISCOUNT_RATE 0.25
 
 typedef struct {
-    char fullName[100];
+    char stud_name[100];
     char id[9];
     float gpa;
-    int creditHours;
-} Student;
+    int crdh;
+} Stud;
 
 typedef struct {
-    char fullName[100];
+    char stud_name[100];
     char id[9];
     char department[10];
     char rank[10];
 } Faculty;
 
-Student students[MAX_STUDENTS];
+Stud Studs[MAX_StudS];
 Faculty faculty[MAX_FACULTY];
-int studentCount = 0;
+int StudCount = 0;
 int facultyCount = 0;
 
 void toUpperCase(char *str) {
@@ -60,18 +58,18 @@ int validateRank(char *rank) {
     return strcmp(rank, "PROFESSOR") == 0 || strcmp(rank, "ADJUNCT") == 0;
 }
 
-void addStudent() {
-    if (studentCount >= MAX_STUDENTS) {
-        printf("Student capacity reached. Cannot add more students.\n");
+void addStud() {
+    if (StudCount >= MAX_StudS) {
+        printf("Stud capacity reached. Cannot add more Studs.\n");
         return;
     }
 
-    Student s;
-    printf("Enter the student’s info:\n");
-    printf("Name of Student: ");
+    Stud s;
+    printf("Enter the Stud’s info:\n");
+    printf("Name of Stud: ");
     getchar();
-    fgets(s.fullName, 100, stdin);
-    s.fullName[strcspn(s.fullName, "\n")] = '\0';
+    fgets(s.stud_name, 100, stdin);
+    s.stud_name[strcspn(s.stud_name, "\n")] = '\0';
 
     for (int attempts = 0; attempts < 3; attempts++) {
         printf("ID: ");
@@ -89,9 +87,9 @@ void addStudent() {
     scanf("%f", &s.gpa);
 
     printf("Credit hours: ");
-    scanf("%d", &s.creditHours);
+    scanf("%d", &s.crdh);
 
-    students[studentCount++] = s;
+    Studs[StudCount++] = s;
     printf("Thanks!\n");
 }
 
@@ -105,8 +103,8 @@ void addFaculty() {
     printf("Enter the faculty’s info:\n");
     printf("Name of the faculty: ");
     getchar();
-    fgets(f.fullName, 100, stdin);
-    f.fullName[strcspn(f.fullName, "\n")] = '\0';
+    fgets(f.stud_name, 100, stdin);
+    f.stud_name[strcspn(f.stud_name, "\n")] = '\0';
 
     for (int attempts = 0; attempts < 3; attempts++) {
         printf("ID: ");
@@ -146,33 +144,33 @@ void addFaculty() {
     printf("Thanks!\n");
 }
 
-void printTuitionInvoice(Student s) {
-    float totalCost = s.creditHours * CREDIT_COST + ADMIN_FEE;
+void printTuitionInvoice(Stud s) {
+    float totalCost = s.crdh * CREDIT_COST + ADMIN_FEE;
     float discount = (s.gpa >= GPA_DISCOUNT) ? totalCost * DISCOUNT_RATE : 0.0;
     totalCost -= discount;
 
-    printf("Here is the tuition invoice for %s:\n", s.fullName);
+    printf("Here is the tuition invoice for %s:\n", s.stud_name);
     printf("---------------------------------------------------------------------------\n");
-    printf("%s %s\n", s.fullName, s.id);
-    printf("Credit Hours: %d ($%.2f/credit hour)\n", s.creditHours, CREDIT_COST);
+    printf("%s %s\n", s.stud_name, s.id);
+    printf("Credit Hours: %d ($%.2f/credit hour)\n", s.crdh, CREDIT_COST);
     printf("Fees: $%.2f\n", ADMIN_FEE);
     printf("Total payment: $%.2f ($%.2f discount applied)\n", totalCost, discount);
     printf("---------------------------------------------------------------------------\n");
 }
 
-void searchStudent() {
+void searchStud() {
     char id[9];
-    printf("Enter the student’s id: ");
+    printf("Enter the Stud’s id: ");
     scanf("%s", id);
     toUpperCase(id);
 
-    for (int i = 0; i < studentCount; i++) {
-        if (strcmp(students[i].id, id) == 0) {
-            printTuitionInvoice(students[i]);
+    for (int i = 0; i < StudCount; i++) {
+        if (strcmp(Studs[i].id, id) == 0) {
+            printTuitionInvoice(Studs[i]);
             return;
         }
     }
-    printf("Sorry-student not found!\n");
+    printf("Sorry-Stud not found!\n");
 }
 
 void searchFaculty() {
@@ -185,7 +183,7 @@ void searchFaculty() {
         if (strcmp(faculty[i].id, id) == 0) {
             printf("Faculty found:\n");
             printf("---------------------------------------------------------------------------\n");
-            printf("%s\n%s department, %s\n", faculty[i].fullName, faculty[i].department, faculty[i].rank);
+            printf("%s\n%s department, %s\n", faculty[i].stud_name, faculty[i].department, faculty[i].rank);
             printf("---------------------------------------------------------------------------\n");
             return;
         }
@@ -198,8 +196,8 @@ void menu() {
     do {
         printf("\nChoose one of the options:\n");
         printf("1- Add a new faculty member\n");
-        printf("2- Add a new student\n");
-        printf("3- Print tuition invoice for a student\n");
+        printf("2- Add a new Stud\n");
+        printf("3- Print tuition invoice for a Stud\n");
         printf("4- Print information of a faculty\n");
         printf("5- Exit Program\n");
         printf("Enter your selection: ");
@@ -210,10 +208,10 @@ void menu() {
                 addFaculty();
                 break;
             case 2:
-                addStudent();
+                addStud();
                 break;
             case 3:
-                searchStudent();
+                searchStud();
                 break;
             case 4:
                 searchFaculty();
